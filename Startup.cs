@@ -54,7 +54,7 @@ namespace PaymentGateway
             RateLimitConfiguration>();
             services.AddHttpContextAccessor();
             //-----
-            services.AddDbContext<PaymentDBContext>(opts => opts.UseSqlServer("Data Source =.;Initial Catalog=PaymentDB;Integrated Security=true"));
+            services.AddDbContext<PaymentDBContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("paymentDatabase")));
             services.AddScoped<IpaymentRepository,PaymentRepository>();
             services.AddScoped<IpaymentService, PaymentService>();
             services.AddControllers();
